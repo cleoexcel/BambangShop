@@ -63,11 +63,11 @@ You can install Postman via this website: https://www.postman.com/downloads/
     -   [x] Commit: `Implement unsubscribe function in Notification controller.`
     -   [x] Write answers of your learning module's "Reflection Publisher-2" questions in this README.
 -   **STAGE 3: Implement notification mechanism**
-    -   [ ] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
-    -   [ ] Commit: `Implement notify function in Notification service to notify each Subscriber.`
-    -   [ ] Commit: `Implement publish function in Program service and Program controller.`
-    -   [ ] Commit: `Edit Product service methods to call notify after create/delete.`
-    -   [ ] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
+    -   [x] Commit: `Implement update method in Subscriber model to send notification HTTP requests.`
+    -   [x] Commit: `Implement notify function in Notification service to notify each Subscriber.`
+    -   [x] Commit: `Implement publish function in Program service and Program controller.`
+    -   [x] Commit: `Edit Product service methods to call notify after create/delete.`
+    -   [x] Write answers of your learning module's "Reflection Publisher-3" questions in this README.
 
 ## Your Reflections
 This is the place for you to write reflections:
@@ -87,6 +87,14 @@ This is the place for you to write reflections:
 > What happens if we only use the Model? Explain your imagination on how the interactions between each model (Program, Subscriber, Notification) affect the code complexity for each model?
 - The impact is that the code will become more complex and harder to maintain. The coupling between the two classes will increase, meaning that if a change is made, it could lead to many other changes, unlike when we separate business logic from data access.
 > Have you explored more about Postman? Tell us how this tool helps you to test your current work. You might want to also list which features in Postman you are interested in or feel like it is helpful to help your Group Project or any of your future software engineering projects.
-- Dengan Postman, saya dapat melakukan API _Testing_. Saya dapat melihat hasil dari _request_ yang saya kirimkan dan memastikan bahwa _response_ yang saya terima sudah sesuai dengan yang saya harapkan.  Salah satu fitur pendukungnya yaitu _Collection_ yang bisa mengelompokkan _request_ berdasarkan _folder_ dan _Environment_ memungkinkan saya untuk menyimpan _variable_ yang sering saya gunakan.
+- With Postman, I can perform API Testing. I can view the results of the requests I send and ensure that the responses I receive match my expectations. One of its supporting features is Collection, which allows me to group requests into folders, and Environment lets me store frequently used variables.
 
 #### Reflection Publisher-3
+> Observer Pattern has two variations: Push model (publisher pushes data to subscribers) and Pull model (subscribers pull data from publisher). In this tutorial case, which variation of Observer Pattern that we use?
+- The variation of the Observer Pattern used in this tutorial is the Push Model because the Publisher sends notifications to all of its Subscribers whenever a CRUD operation occurs on a Product, using the notify method in the NotificationService.
+> What are the advantages and disadvantages of using the other variation of Observer Pattern for this tutorial case? (example: if you answer Q1 with Push, then imagine if we used Pull)
+- For the Pull Model case:
+- Advantages: The Observer/Subscriber has the ability to determine what notifications they want to receive from the Publisher, providing greater flexibility.
+- Disadvantages: The Observer/Subscriber needs to be active. If not, they might miss out on desired notifications because they have to perform a manual pull themselves (manual pull).
+> Explain what will happen to the program if we decide to not use multi-threading in the notification process.
+- In my opinion, the process will run sequentially and will take a long time. The bottleneck lies in the Publisher sending notifications to all Subscribers in the NotificationService class through the notify() method. As a result, the notification delivery must be completed first before any other processes can continue.
